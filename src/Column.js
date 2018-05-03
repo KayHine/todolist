@@ -4,20 +4,33 @@ import Card from './Card'
 class Column extends Component {
   constructor() {
     super();
+    // each card:
+    // id, title, value
     this.state = {
-      cards: 0
+      cards: [],
+      count: 0
     }
   };
 
   handleClick = () => {
+    let newCard = {
+      id: this.state.count,
+      title: '',
+      value: '',
+      isEditMode: true
+    }
     this.setState({
-      cards: this.state.cards + 1
+      cards: [...this.state.cards, newCard],
+      count: this.state.count + 1
     });
   }
 
-  var totalCards = [];
-  for (var i = 0; i < this.state.cards; i++) {
-    totalCards.push(<Card />);
+  cardHandleChange = (event) => {
+  
+  }
+
+  cardButtonHandleClick = () => {
+
   }
 
   render() {
@@ -26,7 +39,15 @@ class Column extends Component {
         <button onClick={this.handleClick}>
           Add Card
         </button>
-        {cards}
+        {
+          this.state.cards.map((card) =>
+            <Card
+            id={card.id}
+            title={card.title}
+            value={card.value}
+            isEditMode={card.isEditMode}
+            />)
+        }
       </div>
     )
   }
