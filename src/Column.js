@@ -26,7 +26,7 @@ class Column extends Component {
   }
 
   cardHandleChange = (event) => {
-  
+    console.log(event.target.key + ': ' + event.target.value);
   }
 
   cardButtonHandleClick = () => {
@@ -42,10 +42,11 @@ class Column extends Component {
         {
           this.state.cards.map((card) =>
             <Card
-            id={card.id}
+            key={card.id}
             title={card.title}
             value={card.value}
             isEditMode={card.isEditMode}
+            onChange={this.cardHandleChange}
             />)
         }
       </div>
